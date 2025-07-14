@@ -1,0 +1,48 @@
+﻿@model Whisper.Models.Confession
+
+@{
+    ViewData["Title"] = "Your Advice";
+}
+
+<h1 class="text-3xl font-bold text-center my-12 text-gray-100">Your Confession & Advice 🌌</h1> @* Increased vertical margin *@
+
+<div class="max-w-2xl mx-auto p-8 bg-transparent rounded-xl shadow-none border border-gray-700/50 mb-8">
+    @* Increased padding, subtle border *@
+    <h2 class="text-2xl font-semibold text-gray-200 mb-5">Your Confession: <span class="text-gray-400">📜</span></h2> @* Larger heading, more margin *@
+    <p class="text-lg text-gray-300 leading-relaxed mb-8 p-6 bg-gray-900/40 rounded-lg border border-gray-700">
+        @* Refined padding, background, border *@
+        @Model.ConfessionText
+    </p>
+
+    <h2 class="text-2xl font-semibold text-gray-200 mb-5">AI's Advice: <span class="text-purple-400">✨</span></h2> @* Larger heading, more margin *@
+    <p class="text-lg text-white leading-relaxed p-6 bg-purple-900/30 rounded-lg border border-purple-700">
+        @* Refined padding, background, border *@
+        @Model.AdviceText
+    </p>
+
+    <div class="mt-10 text-center space-x-6">
+        @* Increased top margin, space between buttons *@
+        @if (!Model.IsPublishedAnonymously)
+        {
+        <form asp-action="Publish" asp-route-id="@Model.Id" method="post" class="inline-block">
+            <button type="submit"
+                    class="bg-transparent border-2 border-green-600 text-green-400 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 flex items-center space-x-3 text-xl inline-flex">
+                @* Thicker border, refined text/hover *@
+                <span>Publish Anonymously</span> 🤫
+            </button>
+        </form>
+        }
+        else
+        {
+        <p class="text-gray-500 italic text-lg">This confession has been published anonymously. 🕊️</p>
+        }
+        <a asp-action="Index" class="inline-block text-blue-400 hover:text-blue-200 font-semibold py-3 px-6 rounded-full transition duration-200 text-xl border-2 border-transparent hover:border-blue-400">
+            @* Refined link styling *@
+            View All Confessions 📖
+        </a>
+        <a asp-action="Create" class="inline-block text-gray-500 hover:text-gray-300 font-semibold py-3 px-6 rounded-full transition duration-200 text-xl border-2 border-transparent hover:border-gray-500">
+            @* Refined link styling *@
+            Share Another Confession ✍️
+        </a>
+    </div>
+</div>

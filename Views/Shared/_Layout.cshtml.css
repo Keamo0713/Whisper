@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html >
+<html lang="en" >
+<head >
+<meta charset="utf-8" / >
+<meta name="viewport" content="width=device-width, initial-scale=1.0" / >
+<title > @ViewData["Title"] - Whisper</title >
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com" > </script >
+<!-- Google Font: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" >
+<style >
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6; /* Light gray background */
+}
+
+</style >
+</head >
+<body >
+<header class="bg-white shadow-sm" >
+<nav class="container mx-auto px-4 py-4 flex justify-between items-center" >
+<a class="text-2xl font-bold text-gray-800" asp-area="" asp-controller="Confession" asp-action="Create" > Whisper</a >
+<div class="space-x-4" >
+<a class="text-gray-600 hover:text-gray-900 font-medium" asp-area="" asp-controller="Confession" asp-action="Create" > Confess</a >
+<a class="text-gray-600 hover:text-gray-900 font-medium" asp-area="" asp-controller="Confession" asp-action="Index" > Anonymous Confessions</a >
+</div >
+</nav >
+</header >
+
+<div class="container mx-auto px-4 pb-20" >
+<main role="main" class="pb-3" >
+@RenderBody()
+</main >
+</div >
+
+<footer class="border-t border-gray-200 text-muted fixed bottom-0 w-full bg-white py-4" >
+<div class="container mx-auto px-4 text-center text-sm text-gray-600" >
+&copy; 2024 - Whisper
+</div >
+</footer >
+
+<script src="~/lib/jquery/dist/jquery.min.js" > </script >
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" > </script >
+<script src="~/js/site.js" asp-append-version="true" > </script >
+
+@await RenderSectionAsync("Scripts", required: false)
+</body >
+</html >

@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Whisper</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    @{
+        @Html.Raw(@"
+        <style>
+            /* Custom CSS for the professional dark theme */
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #1B2B34; /* Very dark blue-grey */
+                background-image: radial-gradient(at 50% 0%, #2C3E50, #1B2B34); /* Subtle gradient for depth */
+                min-height: 100vh; /* Ensure it covers full viewport height */
+                display: flex;
+                flex-direction: column;
+                color: #E0E0E0; /* Default light text for the entire body */
+            }
+            /* Adjust main content div to grow and push footer down */
+            .container.mx-auto.px-4.py-8 { /* Adjusted padding */
+                flex-grow: 1;
+            }
+            /* Footer to be at the bottom */
+            footer {
+                margin-top: auto;
+            }
+
+            /* Basic animation for fade-in effect */
+            .animate-fade-in {
+                animation: fadeIn 1.5s ease-out forwards;
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(-20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+        ")
+    }
+</head>
+<body>
+    <header class="bg-transparent shadow-none border-b border-gray-700/50 py-4">
+        @* Transparent header, subtle grey border, more padding *@
+        <nav class="container mx-auto px-6 flex justify-between items-center">
+            @* Adjusted padding *@
+            <a class="text-3xl font-extrabold text-gray-100 hover:text-white transition-colors duration-200 tracking-wide" asp-area="" asp-controller="Confession" asp-action="Create">Whisper</a>
+            <div class="space-x-6">
+                @* Increased space between links *@
+                <a class="text-lg text-gray-400 hover:text-gray-100 font-medium transition-colors duration-200" asp-area="" asp-controller="Confession" asp-action="Create">Confess</a>
+                <a class="text-lg text-gray-400 hover:text-gray-100 font-medium transition-colors duration-200" asp-area="" asp-controller="Confession" asp-action="Index">Anonymous Confessions</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mx-auto px-6 py-8">
+        @* Adjusted padding *@
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-t border-gray-700/50 text-muted w-full bg-transparent py-6">
+        @* Transparent footer, subtle grey border, more padding *@
+        <div class="container mx-auto px-6 text-center text-sm text-gray-500">
+            &copy; 2025 Keamogetsoe Kgomotso Nicole Sele - Whisper. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

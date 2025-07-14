@@ -1,0 +1,44 @@
+﻿@model Whisper.Models.Confession
+@{
+    ViewData["Title"] = "Whisper to the Vault";
+}
+
+<div class="text-center my-12 text-white">
+    @* Increased vertical margin *@
+    <h1 class="text-6xl font-extrabold mb-4 animate-fade-in tracking-tight">
+        @* Larger, tighter tracking heading *@
+        ✨ Whisper to the Vault ✨
+    </h1>
+    <p class="text-2xl font-light text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        @* Larger, more readable paragraph *@
+        Share your secrets, find solace, and release your burdens.
+    </p>
+</div>
+
+<div class="max-w-3xl mx-auto px-8 py-10">
+    @* Increased padding *@
+    <form asp-action="Create" method="post" class="w-full">
+        <div class="mb-10">
+            @* Increased bottom margin *@
+            <label for="ConfessionText" class="block text-gray-200 text-2xl font-semibold mb-5">
+                @* Larger label with more margin *@
+                Your Confession: 🤫
+            </label>
+            <textarea id="ConfessionText" name="ConfessionText" rows="12" @* Increased rows for a larger textarea *@
+                      class="appearance-none border border-gray-600 rounded-xl w-full py-6 px-7 text-gray-100 leading-relaxed focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-900/40 placeholder-gray-500 transition duration-300 text-xl resize-y" @* Refined border, padding, text size, added resize *@
+                      placeholder="Type your deepest secret here..."></textarea>
+            <span asp-validation-for="ConfessionText" class="text-red-400 text-sm italic mt-3 block"></span>
+        </div>
+        <div class="flex items-center justify-center">
+            <button type="submit"
+                    class="bg-transparent border-2 border-white text-white font-bold py-5 px-12 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 flex items-center space-x-4 text-2xl tracking-wide">
+                @* Thicker border, larger padding, more pronounced hover *@
+                <span>Whisper</span> ✍️
+            </button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

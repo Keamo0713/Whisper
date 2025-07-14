@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Whisper.Models.Confession>
+
+    @{
+    ViewData["Title"] = "Anonymous Confessions";
+    }
+
+    <h1 class="text-3xl font-bold text-center my-12 text-gray-100">Anonymous Confessions ✨</h1> @* Increased vertical margin *@
+
+    @if (!Model.Any())
+{
+    <p class="text-center text-gray-400 text-xl mt-10">No confessions published yet. Be the first to share! 🌠</p>  @* Larger text *@
+}
+else
+{
+    <div class="max-w-4xl mx-auto bg-transparent rounded-xl shadow-none overflow-hidden border border-gray-700/50">
+        @* Subtle border *@
+        <table class="min-w-full leading-normal">
+            <thead>
+                <tr>
+                    <th class="px-6 py-4 border-b-2 border-gray-700 bg-gray-900/50 text-left text-sm font-semibold text-gray-300 uppercase tracking-wider">
+                        @* Refined padding, background, text *@
+                        Confession 🤫
+                    </th>
+                    <th class="px-6 py-4 border-b-2 border-gray-700 bg-gray-900/50 text-left text-sm font-semibold text-gray-300 uppercase tracking-wider">
+                        @* Refined padding, background, text *@
+                        Advice 🔮
+                    </th>
+                    <th class="px-6 py-4 border-b-2 border-gray-700 bg-gray-900/50 text-left text-sm font-semibold text-gray-300 uppercase tracking-wider">
+                        @* Refined padding, background, text *@
+                        Date 🗓️
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderByDescending(c => c.Timestamp))
+                {
+                <tr>
+                    <td class="px-6 py-5 border-b border-gray-800 bg-transparent text-lg">
+                        @* Refined padding, text size *@
+                        <p class="text-gray-200 whitespace-pre-wrap">@item.ConfessionText</p> @* Added whitespace-pre-wrap for readability *@
+                    </td>
+                    <td class="px-6 py-5 border-b border-gray-800 bg-transparent text-lg">
+                        @* Refined padding, text size *@
+                        <p class="text-white whitespace-pre-wrap">@item.AdviceText</p> @* Added whitespace-pre-wrap for readability *@
+                    </td>
+                    <td class="px-6 py-5 border-b border-gray-800 bg-transparent text-lg">
+                        @* Refined padding, text size *@
+                        <p class="text-gray-400 whitespace-no-wrap">@item.Timestamp.ToShortDateString()</p>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+    <div class="mt-10 text-center">
+        @* Increased top margin *@
+        <a asp-action="Create"
+           class="bg-transparent border-2 border-white text-white font-bold py-4 px-10 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 flex items-center space-x-4 inline-flex text-xl tracking-wide">
+            @* Thicker border, larger padding, more pronounced hover *@
+            <span>Share Your Confession</span> ✍️
+        </a>
+    </div>
